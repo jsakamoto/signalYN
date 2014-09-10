@@ -1,0 +1,17 @@
+﻿@model Room
+@{
+    ViewBag.Title = "Room";
+}
+
+<h2>Room</h2>
+
+<p>Room number is [@Model.RoomNumber]</p>
+
+<ul>
+    @foreach (var option in Model.Options)
+    {
+        <li>@option.Text</li>
+    }
+</ul>
+
+<p>Are you owner of this room? -> @(Model.OwnerUserID == this.User.Identity.Name ? "Yes" : "No")</p>

@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @this.User.Identity.Name
+</p>
+
+<form action="room">
+    <p>
+        <input type="number" value="" name="id" autofocus placeholder="room number" required/>
+    </p>
+    <p>
+        <input type="submit" value="Enter" class="btn btn-primary"/>
+    </p>
+</form>
+
+<p>
+    <a href="@Url.Action("CreateNewRoom")">or Create New Room</a>
+</p>
