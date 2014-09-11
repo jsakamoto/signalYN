@@ -21,6 +21,8 @@ namespace AskTheAudienceNow
             });
             
             app.Use<TrackingAuthMiddleware>();
+
+            app.MapSignalR();
         }
     }
 }

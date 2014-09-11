@@ -3,15 +3,34 @@
     ViewBag.Title = "Room";
 }
 
-<h2>Room</h2>
+<div ng-app="theApp" ng-controller="roomController">
+    <h2>Room - {{greeting.text}}</h2>
 
-<p>Room number is [@Model.RoomNumber]</p>
+    <div>
+        <canvas id="chart" width="200" height="200"></canvas>
+    </div>
 
-<ul>
-    @foreach (var option in Model.Options)
-    {
-        <li>@option.Text</li>
-    }
-</ul>
+    <p>Room number is [@Model.RoomNumber]</p>
 
-<p>Are you owner of this room? -> @(Model.OwnerUserID == this.User.Identity.Name ? "Yes" : "No")</p>
+    <ul>
+        @foreach (var option in Model.Options)
+        {
+            <li>
+                <a ng-click="postAnswer('@(option.Text)')">@option.Text</a>
+            </li>
+        }
+    </ul>
+
+    <div>
+        <a ng-click="reset()">Reset</a>
+    </div>
+
+    <p>Are you owner of this room? -> @(Model.OwnerUserID == this.User.Identity.Name ? "Yes" : "No")</p>
+</div>
+@section scripts{
+    <script>
+        var _app = _app || {};
+        _app.roomNumber = @Model.RoomNumber;
+    </script>
+    <script src="~/app.js"></script>
+}

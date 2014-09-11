@@ -51,6 +51,5 @@ namespace AskTheAudienceNow.Controllers
                 .Single(_ => _.RoomNumber == id);
             return View(room);
         }
-
     }
 }
