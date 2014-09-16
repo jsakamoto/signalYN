@@ -2,6 +2,11 @@
 @{
     ViewBag.Title = "Room";
 }
+<style>
+    a.selected {
+        font-weight: bold;
+    }
+</style>
 
 <div ng-app="theApp" ng-controller="roomController">
     <h2>Room - {{greeting.text}}</h2>
@@ -13,12 +18,11 @@
     <p>Room number is [@Model.RoomNumber]</p>
 
     <ul>
-        @foreach (var option in Model.Options)
-        {
-            <li>
-                <a ng-click="postAnswer('@(option.Text)')">@option.Text</a>
-            </li>
-        }
+        <li ng-repeat="option in options">
+            <a ng-click="postAnswer(option)" ng-class="{selected:option.selected}">
+                {{option.text}}
+            </a>
+        </li>
     </ul>
 
     <div>

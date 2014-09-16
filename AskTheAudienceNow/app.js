@@ -12,14 +12,12 @@ theApp.controller('roomController', function ($scope) {
     var hub = $.connection.hub.createHubProxy('DefaultHub');
 
     hub.on('UpdateTotaling', function (totaling) {
-        console.dir(totaling);
         var data = $.map(totaling, function (a, n) {
             return { label: a.label, value: a.value, color: colorsOfChart[n] };
         });
         data.reverse();
         if (chartInstance == null) {
-            console.dir(data);
-            chartInstance = chart.Doughnut(data, { percentageInnerCutout: 70, animationEasing: 'easeOutQuart', animationSteps: 50 });
+            chartInstance = chart.Doughnut(data, { percentageInnerCutout: 70, animationEasing: 'easeOutQuart', animationSteps: 20 });
         } else {
             $.each(data, function (n, a) {
                 chartInstance.segments[n].value = a.value;
@@ -33,12 +31,25 @@ theApp.controller('roomController', function ($scope) {
         chartInstance = null;
     });
 
-    $.connection.hub.start().done(function () {
-        hub.invoke('EnterRoom', window._app.roomNumber);
+    $.connection.hub.start().then(function () {
+        return hub.invoke('EnterRoom', window._app.roomNumber);
+    }).then(function (data) {
+        $scope.$apply(function () {
+            $scope.options = data;
+        });
     });
 
-    $scope.postAnswer = function (answer) {
-        hub.invoke('PostAnswer', window._app.roomNumber, answer);
+    $scope.postAnswer = function (option) {
+        if (option.selected) {
+            option.selected = false;
+            hub.invoke('RevokeAnswer', window._app.roomNumber, option.text);
+        } else {
+            $.each($scope.options, function (_, opt) {
+                opt.selected = false;
+            });
+            option.selected = true;
+            hub.invoke('PostAnswer', window._app.roomNumber, option.text);
+        }
     };
 
     $scope.reset = function () {

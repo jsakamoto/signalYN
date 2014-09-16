@@ -11,7 +11,7 @@ namespace AskTheAudienceNow.Models
 
         public int RoomID { get; set; }
 
-        public int AnsweredUserID { get; set; }
+        public string AnsweredUserID { get; set; }
 
         public string ChosedOptionText { get; set; }
     }
