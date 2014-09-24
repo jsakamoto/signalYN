@@ -1,18 +1,190 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+body {
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
+header {
+    height: 3em;
+    line-height: 3em;
+    display: block;
+    background-color: #eee;
+    font-weight: bold;
+    position: relative;
+}
+
+canvas {
+    background-image: url(images/blank.png);
+}
+
+header a.go-home {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-image: url(images/back.png);
+    background-size: contain;
+    opacity: 0.5;
+}
+
+    header a.go-home:hover {
+        opacity: 0.3;
+    }
+
+.main {
+    margin-top: 40px;
+    display: inline-block;
+    width: 80%;
+}
+
+    .main * {
+        width: 100%;
+    }
+
+a {
+    color: rgb(18, 132, 255);
+    text-decoration: none;
+}
+
+input.btn-primary {
+    background-color: rgb(18, 132, 255);
+    border: none;
+    color: white;
+    height: 2.5em;
+    border-radius: 4px 4px;
+}
+
+input.room-number {
+    outline: none;
+    border: none;
+    border-bottom: solid 1px #ccc;
+    font-size: 150%;
+}
+
+/* room page */
+.room-page .room-number {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+ul.options,
+ul.options li {
+    margin: 0;
+    padding: 0;
+}
+
+ul.options {
+    margin-top: 2em;
+}
+
+    ul.options li {
+        list-style: none;
+        display: inline-block;
+        width: 50%;
+        padding: 0px 4px;
+    }
+
+.room-page a {
+    display: inline-block;
+    border: solid 1px;
+    height: 2.5em;
+    line-height: 2.5em;
+    cursor: pointer;
+    border-radius: 4px 4px;
+}
+
+    .room-page a:hover {
+        opacity: 0.8;
+    }
+
+ul.options li a.option-Yes {
+    color: #080;
+    border-color: #080;
+}
+
+ul.options li a.option-No {
+    color: #f44;
+    border-color: #f44;
+}
+
+ul.options li a.option-Yes.selected-true {
+    background-color: #080;
+    color: white;
+}
+
+ul.options li a.option-No.selected-true {
+    background-color: #f44;
+    color: white;
+}
+
+.chart-container {
+    display: inline-block;
+    width: 200px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.counters {
+    position: absolute;
+    top: 88px;
+}
+
+    .counters .counter {
+        background-color: transparent;
+        font-size: 150%;
+        font-weight: bold;
+        display: inline-block;
+        width: 50%;
+        text-align: right;
+        padding: 0 6px;
+    }
+
+        .counters .counter:last-child {
+            text-align: left;
+        }
+
+.chart-container .separator {
+    background-color: transparent;
+    font-size: 150%;
+    font-weight: bold;
+    position: absolute;
+    top: 87px;
+}
+
+.counters .counter:last-child .separator {
+    display: none;
+}
+
+.owner-only {
+    display: none;
+}
+
+.owner .owner-only {
+    display: block;
+}
+
+.owner .options {
+    display: none;
+}
+
+a.reset {
+    color: white;
+    background-color: rgb(18, 132, 255);
+    border-color: rgb(18, 132, 255);
+}

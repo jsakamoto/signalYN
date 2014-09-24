@@ -1,35 +1,39 @@
 ﻿@model Room
 @{
-    ViewBag.Title = "Room";
+    var isOwner = Model.OwnerUserID == this.User.Identity.Name;
 }
-<style>
-    a.selected {
-        font-weight: bold;
-    }
-</style>
+@section headerLeft{
+    <a href="/" class="go-home"></a>
+}
 
-<div ng-app="theApp" ng-controller="roomController">
-    <h2>Room - {{greeting.text}}</h2>
-
-    <div>
-        <canvas id="chart" width="200" height="200"></canvas>
+<div ng-app="theApp" ng-controller="roomController as ctrl" class="@(isOwner ? "owner" : "") room-page">
+    <div>Room number</div>
+    <div class="room-number">
+        @Model.RoomNumber
     </div>
 
-    <p>Room number is [@Model.RoomNumber]</p>
+    <div class="chart-container">
+        <canvas id="chart" width="200" height="200"></canvas>
+        <div class="counters">
+            <span class="counter" ng-repeat="option in options" ng-bind="option.count">
+            </span>
+        </div>
+        <div class="separator">:</div>
+    </div>
 
-    <ul>
+    <ul class="options">
         <li ng-repeat="option in options">
-            <a ng-click="postAnswer(option)" ng-class="{selected:option.selected}">
-                {{option.text}}
+            <a ng-click="ctrl.postAnswer(option)"
+               ng-class="'selected-'+option.selected + ' option-'+option.text">
+                <span class="text" ng-bind="option.text"></span>
             </a>
         </li>
     </ul>
 
-    <div>
-        <a ng-click="reset()">Reset</a>
+    <div class="owner-only">
+        <a ng-click="ctrl.reset()" class="reset">Reset</a>
     </div>
 
-    <p>Are you owner of this room? -> @(Model.OwnerUserID == this.User.Identity.Name ? "Yes" : "No")</p>
 </div>
 @section scripts{
     <script>

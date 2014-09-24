@@ -34,7 +34,8 @@ namespace AskTheAudienceNow.Controllers
                 .Select(o => new
                 {
                     text = o.Text,
-                    selected = o.Text == myAnswer.ChosedOptionText
+                    selected = o.Text == myAnswer.ChosedOptionText,
+                    count = room.Answers.Count(a => a.ChosedOptionText == o.Text)
                 })
                 .ToArray();
             

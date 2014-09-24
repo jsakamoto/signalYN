@@ -7,6 +7,7 @@ interface Window {
 interface Option {
     text: string;
     selected: boolean;
+    count: number;
 }
 
 declare class Chart {
@@ -14,59 +15,82 @@ declare class Chart {
     Doughnut(data: any[], options: any): any;
 }
 
-var theApp = angular.module('theApp', []);
+interface IScope extends ng.IScope {
+    options: Option[];
+}
 
-theApp.controller('roomController', ($scope: any) => {
-    var context = (<HTMLCanvasElement>$('#chart')[0]).getContext('2d');
-    var chart = new Chart(context);
-    var chartInstance = null;
-    var colorsOfChart = ['#00ff00', '#ff0000'];
+class RoomController {
+    hub: HubProxy;
+    $scope: IScope;
 
-    var hub = $.connection.hub.createHubProxy('DefaultHub');
+    constructor($scope: IScope) {
+        this.$scope = $scope;
+        var context = (<HTMLCanvasElement>$('#chart')[0]).getContext('2d');
+        var chart = new Chart(context);
+        var chartInstance = null;
+        var colorsOfChart = ['#00ff00', '#ff0000'];
 
-    hub.on('UpdateTotaling', (totaling) => {
-        var data = <any[]>$.map(totaling, (a, n) => {
-            return { label: a.label, value: a.value, color: colorsOfChart[n] };
-        });
-        data.reverse();
-        if (chartInstance == null) {
-            chartInstance = chart.Doughnut(data, { percentageInnerCutout: 70, animationEasing: 'easeOutQuart', animationSteps: 20 });
-        }
-        else {
-            $.each(data, (n, a) => {
-                chartInstance.segments[n].value = a.value;
-            });
-            chartInstance.update();
-        }
-    });
+        this.hub = $.connection.hub.createHubProxy('DefaultHub');
 
-    hub.on('Reset', () => {
-        chartInstance.clear();
-        chartInstance = null;
-    });
-
-    $.connection.hub
-        .start()
-        .then(() => hub.invoke('EnterRoom', window._app.roomNumber))
-        .then(data => {
+        this.hub.on('UpdateTotaling', (totaling: any[]) => {
             $scope.$apply(() => {
-                $scope.options = data;
+                totaling.forEach(a => {
+                    var option = $scope.options.filter(opt => opt.text == a.label)[0];
+                    option.count = a.value;
+                });
+            });
+            var data = totaling.map((a, n) => {
+                return { label: a.label, value: a.value, color: colorsOfChart[n] };
+            });
+            data.reverse();
+            if (chartInstance == null) {
+                chartInstance = chart.Doughnut(data, { percentageInnerCutout: 70, animationEasing: 'easeOutQuart', animationSteps: 20 });
+            }
+            else {
+                data.forEach((a, n) => chartInstance.segments[n].value = a.value);
+                chartInstance.update();
+            }
+        });
+
+        this.hub.on('Reset', () => {
+            $scope.$apply(() => {
+                if (chartInstance != null) {
+                    chartInstance.destroy();
+                    chartInstance = null;
+                }
+                $scope.options.forEach(o => {
+                    o.count = 0;
+                    o.selected = false;
+                });
             });
         });
 
-    $scope.postAnswer = (option: Option) => {
+        $.connection.hub
+            .start()
+            .then(() => this.hub.invoke('EnterRoom', window._app.roomNumber))
+            .then(data => {
+                $scope.$apply(() => {
+                    $scope.options = <Option[]><any>data;
+                });
+            });
+    }
+
+    public postAnswer(option: Option) {
         if (option.selected) {
             option.selected = false;
-            hub.invoke('RevokeAnswer', window._app.roomNumber, option.text);
+            this.hub.invoke('RevokeAnswer', window._app.roomNumber, option.text);
         }
         else {
-            $.each($scope.options, (_, opt: Option) => { opt.selected = false; });
+            this.$scope.options.forEach(opt => opt.selected = false);
             option.selected = true;
-            hub.invoke('PostAnswer', window._app.roomNumber, option.text);
+            this.hub.invoke('PostAnswer', window._app.roomNumber, option.text);
         }
-    };
+    }
 
-    $scope.reset = () => {
-        hub.invoke('Reset', window._app.roomNumber);
-    };
-});
+    public reset() {
+        this.hub.invoke('Reset', window._app.roomNumber);
+    }
+}
+
+var theApp = angular.module('theApp', []);
+theApp.controller('roomController', RoomController);
