@@ -25,6 +25,7 @@ class RoomController {
 
     constructor($scope: IScope) {
         this.$scope = $scope;
+        this.$scope.options = [];
         var context = (<HTMLCanvasElement>$('#chart')[0]).getContext('2d');
         var chart = new Chart(context);
         var chartInstance = null;

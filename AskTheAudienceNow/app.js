@@ -5,6 +5,7 @@ var RoomController = (function () {
     function RoomController($scope) {
         var _this = this;
         this.$scope = $scope;
+        this.$scope.options = [];
         var context = $('#chart')[0].getContext('2d');
         var chart = new Chart(context);
         var chartInstance = null;
