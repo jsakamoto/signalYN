@@ -468,6 +468,7 @@
     <Compile Include="Controllers\DefaultHub.cs" />
     <Compile Include="Extensions\CollectionExtension.cs" />
     <Compile Include="Extensions\ConvertExtension.cs" />
+    <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

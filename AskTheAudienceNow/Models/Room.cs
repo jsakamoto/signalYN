@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,10 @@ namespace AskTheAudienceNow.Models
     {
         public int RoomID { get; set; }
 
+        [Index("IX_RoomNumber", IsUnique = true)]
         public int RoomNumber { get; set; }
+
+        public string ShortUrl { get; set; }
 
         public string OwnerUserID { get; set; }
 
