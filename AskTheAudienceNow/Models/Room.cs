@@ -13,7 +13,6 @@ namespace AskTheAudienceNow.Models
         [Index("IX_RoomNumber", IsUnique = true)]
         public int RoomNumber { get; set; }
 
-        [NotMapped]
         public string Url { get; set; }
 
         public string ShortUrl { get; set; }

@@ -142,6 +142,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="Content\favicons\apple-touch-icon-114x114.png" />
+    <Content Include="Content\favicons\apple-touch-icon-120x120.png" />
+    <Content Include="Content\favicons\apple-touch-icon-144x144.png" />
+    <Content Include="Content\favicons\apple-touch-icon-152x152.png" />
+    <Content Include="Content\favicons\apple-touch-icon-180x180.png" />
+    <Content Include="Content\favicons\apple-touch-icon-57x57.png" />
+    <Content Include="Content\favicons\apple-touch-icon-60x60.png" />
+    <Content Include="Content\favicons\apple-touch-icon-72x72.png" />
+    <Content Include="Content\favicons\apple-touch-icon-76x76.png" />
+    <Content Include="Content\favicons\apple-touch-icon-precomposed.png" />
+    <Content Include="Content\favicons\apple-touch-icon.png" />
+    <Content Include="browserconfig.xml" />
+    <Content Include="Content\favicons\favicon-160x160.png" />
+    <Content Include="Content\favicons\favicon-16x16.png" />
+    <Content Include="Content\favicons\favicon-192x192.png" />
+    <Content Include="Content\favicons\favicon-32x32.png" />
+    <Content Include="Content\favicons\favicon-96x96.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="Content\favicons\mstile-144x144.png" />
+    <Content Include="Content\favicons\mstile-150x150.png" />
+    <Content Include="Content\favicons\mstile-310x150.png" />
+    <Content Include="Content\favicons\mstile-310x310.png" />
+    <Content Include="Content\favicons\mstile-70x70.png" />
     <Content Include="Content\images\back.png" />
     <Content Include="Content\images\blank.png" />
     <Content Include="Content\normalize.css" />
@@ -492,6 +515,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Localize.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Localize.resx</DependentUpon>
+    </Compile>
     <Compile Include="LogToFileAndSendMailListener.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\AppDbContext.cs" />
@@ -535,6 +563,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localize.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Localize.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

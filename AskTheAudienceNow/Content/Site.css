@@ -56,6 +56,14 @@ header a.go-home {
         width: 100%;
     }
 
+.app-description {
+    margin-bottom: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 8px;
+    background-color:aquamarine;
+    border-radius: 4px 4px;
+}
+
 .qr-code {
     width: auto;
     zoom: 0.2;
@@ -80,6 +88,8 @@ input.room-number {
     border-bottom: solid 1px #ccc;
     font-size: 150%;
 }
+
+
 
 /* room page */
 
@@ -115,6 +125,12 @@ input.room-number {
         width: 270px;
         left: -80px;
     }
+
+.room-page .short-url {
+    margin-top: 0px;
+    color: rgb(18, 132, 255);
+    font-weight: bold;
+}
 
 /* room page - options */
 

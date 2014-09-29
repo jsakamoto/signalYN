@@ -34,7 +34,11 @@ namespace AskTheAudienceNow.Controllers
             var urlOfThisRoom = Url.AppUrl() + Url.Action("Room", new { id = newRoomNumber });
             var bitly = Bitly.Default;
             var shortUrlOfThisRoom = bitly.Status == Bitly.StatusType.Available ?
+#if DEBUG
+                bitly.ShortenUrl("http://asktheaudiencenow.azurewebsites.net/Room/" + newRoomNumber.ToString()) : "";
+#else
                 bitly.ShortenUrl(urlOfThisRoom) : "";
+#endif
 
             var options = new[] { 
                 new Option{ DisplayOrder = 1, Text = "Yes" },

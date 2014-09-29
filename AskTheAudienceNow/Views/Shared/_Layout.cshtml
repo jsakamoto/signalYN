@@ -1,9 +1,41 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.AppTitle = "SignalYN";
+}<!DOCTYPE html>
 <html>
-<head>
+<head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ask The Audience Now</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta property="og:title" content="@ViewBag.AppTitle" />
+    <meta property="og:description" content="@Localize.appDescription" />
+    <meta property="og:url" content="@Url.AppUrl()" />
+    <meta property="og:image" content="@Url.AppUrl()/Content/images/ogpimage.png" />@* The size of ogpimage.png for facebook is 200px x 200px. *@
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="@Url.AppUrl()/Content/images/twittercard-image.png">@* The size of twittercard-image.png for twitter card is 120px x 120px. *@
+    <meta name="keywords" content="@Localize.appKeywords" />
+    <meta name="description" content="@Localize.appDescription" />
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/content/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/content/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/content/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/content/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/content/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/content/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/content/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/content/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/content/favicons/apple-touch-icon-180x180.png">
+    <meta name="apple-mobile-web-app-title" content="SignalYN">
+    <link rel="icon" type="image/png" href="/content/favicons/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/content/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/content/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/content/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/content/favicons/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-TileImage" content="/content/favicons/mstile-144x144.png">
+    <meta name="application-name" content="SignalYN">
+
+    <title>@ViewBag.AppTitle</title>
     <link href="~/Content/normalize.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
@@ -11,7 +43,7 @@
     <header>
         @RenderSection("headerLeft", required: false)
         <span>
-            Ask The Audience Now
+            @ViewBag.AppTitle
         </span>
     </header>
     <div class="main">

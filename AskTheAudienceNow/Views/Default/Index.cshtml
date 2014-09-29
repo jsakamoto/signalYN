@@ -2,9 +2,14 @@
 }
 
 <div class="home-page">
-    <div>
+    @*<div>
         @QRCode.Render(Url.AppUrl(), scale: 10, cssClass: "qr-code")
+    </div>*@
+
+    <div class="app-description">
+        @Localize.appDescription
     </div>
+
     <form action="room">
         <p>
             Enter room number.
