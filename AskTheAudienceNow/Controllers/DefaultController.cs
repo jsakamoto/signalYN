@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using AskTheAudienceNow.Models;
+using Newtonsoft.Json.Linq;
 
 namespace AskTheAudienceNow.Controllers
 {
@@ -28,6 +31,11 @@ namespace AskTheAudienceNow.Controllers
                 .ToEnumerable(r => r.Next(100, 10000))
                 .First(n => this.Db.Rooms.Any(room => room.RoomNumber == n) == false);
 
+            var urlOfThisRoom = Url.AppUrl() + Url.Action("Room", new { id = newRoomNumber });
+            var bitly = Bitly.Default;
+            var shortUrlOfThisRoom = bitly.Status == Bitly.StatusType.Available ?
+                bitly.ShortenUrl(urlOfThisRoom) : "";
+
             var options = new[] { 
                 new Option{ DisplayOrder = 1, Text = "Yes" },
                 new Option{ DisplayOrder = 2, Text = "No"},
@@ -37,7 +45,9 @@ namespace AskTheAudienceNow.Controllers
             {
                 RoomNumber = newRoomNumber,
                 OwnerUserID = this.User.Identity.Name,
-                Options = options
+                Options = options,
+                Url = urlOfThisRoom,
+                ShortUrl = shortUrlOfThisRoom
             });
             this.Db.SaveChanges();
 
@@ -50,6 +60,18 @@ namespace AskTheAudienceNow.Controllers
                 .Include("Options")
                 .Single(_ => _.RoomNumber == id);
             return View(room);
+        }
+
+        public ActionResult WarmUp()
+        {
+            var bitly = Bitly.Default;
+
+            var limit = DateTime.UtcNow.AddDays(-7);
+            var roomsToSweep = Db.Rooms.Where(room => room.CreatedAt < limit).ToList();
+            Db.Rooms.RemoveRange(roomsToSweep);
+            Db.SaveChanges();
+
+            return new EmptyResult();
         }
     }
 }

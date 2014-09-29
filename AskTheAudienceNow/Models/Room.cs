@@ -13,12 +13,22 @@ namespace AskTheAudienceNow.Models
         [Index("IX_RoomNumber", IsUnique = true)]
         public int RoomNumber { get; set; }
 
+        [NotMapped]
+        public string Url { get; set; }
+
         public string ShortUrl { get; set; }
 
         public string OwnerUserID { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public virtual ICollection<Option> Options { get; set; }
 
         public virtual ICollection<Answer> Answers { get; set; }
+
+        public Room()
+        {
+            this.CreatedAt = DateTime.UtcNow;
+        }
     }
 }

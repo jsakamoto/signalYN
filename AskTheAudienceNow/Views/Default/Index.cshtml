@@ -2,6 +2,9 @@
 }
 
 <div class="home-page">
+    <div>
+        @QRCode.Render(Url.AppUrl(), scale: 10, cssClass: "qr-code")
+    </div>
     <form action="room">
         <p>
             Enter room number.
@@ -18,3 +21,12 @@
         <a href="@Url.Action("CreateNewRoom")">or Create New Room</a>
     </p>
 </div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $.get('/WarmUp', { cache: false })
+            .done(function () { console.log('OK.'); });
+        });
+    </script>
+}

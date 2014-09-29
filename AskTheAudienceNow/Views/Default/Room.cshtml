@@ -1,15 +1,25 @@
 ﻿@model Room
 @{
     var isOwner = Model.OwnerUserID == this.User.Identity.Name;
+    var urlOfThisRoom = Model.Url;
 }
 @section headerLeft{
     <a href="/" class="go-home"></a>
 }
 
 <div ng-app="theApp" ng-controller="roomController as ctrl" class="@(isOwner ? "owner" : "") room-page">
-    <div>Room number</div>
-    <div class="room-number">
-        @Model.RoomNumber
+
+    <div>
+        <div class="room-number-container">
+            <div>Room number</div>
+            <div class="room-number">
+                @Model.RoomNumber
+            </div>
+            <div class="qrcode-of-roomurl"
+                 onclick="$(this).toggleClass('zoom')">
+                @QRCode.Render(urlOfThisRoom, scale: 10)
+            </div>
+        </div>
     </div>
 
     <div class="chart-container">

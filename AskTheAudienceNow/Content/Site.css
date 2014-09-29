@@ -47,7 +47,7 @@ header a.go-home {
     }
 
 .main {
-    margin-top: 40px;
+    margin-top: 30px;
     display: inline-block;
     width: 80%;
 }
@@ -55,6 +55,11 @@ header a.go-home {
     .main * {
         width: 100%;
     }
+
+.qr-code {
+    width: auto;
+    zoom: 0.2;
+}
 
 a {
     color: rgb(18, 132, 255);
@@ -77,10 +82,41 @@ input.room-number {
 }
 
 /* room page */
+
+/* room page - room number */
+.room-number-container div {
+    width: 110px;
+}
+
+.room-number-container {
+    width: auto;
+    display: inline-block;
+    position: relative;
+}
+
 .room-page .room-number {
     font-size: 150%;
     font-weight: bold;
 }
+
+.room-page .qrcode-of-roomurl {
+    width: 52px;
+    position: absolute;
+    top: 0;
+    left: -60px;
+    z-index: 1;
+    -moz-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    transition: all linear 0.3s;
+}
+
+    .room-page .qrcode-of-roomurl.zoom {
+        width: 270px;
+        left: -80px;
+    }
+
+/* room page - options */
 
 ul.options,
 ul.options li {
@@ -132,6 +168,8 @@ ul.options li a.option-No.selected-true {
     color: white;
 }
 
+/* room page - chart & counter */
+
 .chart-container {
     display: inline-block;
     width: 200px;
@@ -170,6 +208,8 @@ ul.options li a.option-No.selected-true {
 .counters .counter:last-child .separator {
     display: none;
 }
+
+/* room page - owner only controlls */
 
 .owner-only {
     display: none;
