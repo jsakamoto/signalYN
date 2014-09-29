@@ -147,6 +147,7 @@
     <Content Include="Content\normalize.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="onerror.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
@@ -491,6 +492,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LogToFileAndSendMailListener.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Option.cs" />
