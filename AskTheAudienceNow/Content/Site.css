@@ -13,6 +13,7 @@ input::-webkit-inner-spin-button {
 }
 
 body {
+    background-color: #fff;
     text-align: center;
     font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
@@ -47,22 +48,35 @@ header a.go-home {
     }
 
 .main {
-    margin-top: 30px;
+    margin-top: 10px;
     display: inline-block;
-    width: 80%;
+    width: 85%;
 }
 
     .main * {
         width: 100%;
     }
 
-.app-description {
-    margin-bottom: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 8px;
-    background-color:aquamarine;
-    border-radius: 4px 4px;
+#fig01 {
+    float: left;
+    width: 105px;
+    margin-right: 8px;
 }
+
+.app-description {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 95%;
+    background-color: #fff;
+    border-radius: 4px 4px;
+    text-align: left;
+    padding: 0px 8px;
+}
+
+    .app-description:after {
+        display: block;
+        content: "";
+        clear: both;
+    }
 
 .qr-code {
     width: auto;
@@ -138,10 +152,6 @@ ul.options,
 ul.options li {
     margin: 0;
     padding: 0;
-}
-
-ul.options {
-    margin-top: 2em;
 }
 
     ul.options li {
