@@ -3,8 +3,8 @@
 
 <div class="home-page">
     @*<div>
-        @QRCode.Render(Url.AppUrl(), scale: 10, cssClass: "qr-code")
-    </div>*@
+            @QRCode.Render(Url.AppUrl(), scale: 10, cssClass: "qr-code")
+        </div>*@
 
     <img src="~/Content/images/fig01.png" id="fig01" />
     <div class="app-description">
@@ -30,9 +30,6 @@
 
 @section scripts{
     <script>
-        $(function () {
-            $.get('/WarmUp', { cache: false })
-            .done(function () { console.log('OK.'); });
-        });
+        $(function () { $.get('/WarmUp', { _: $.now() }); });
     </script>
 }

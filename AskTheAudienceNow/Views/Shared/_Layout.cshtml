@@ -36,8 +36,7 @@
     <meta name="application-name" content="SignalYN">
 
     <title>@ViewBag.AppTitle</title>
-    <link href="~/Content/normalize.css" rel="stylesheet" />
-    <link href="~/Content/Site.css" rel="stylesheet" />
+    @Styles.Render("~/content/css")
 </head>
 <body>
     <header>
@@ -49,12 +48,31 @@
     <div class="main">
         @RenderBody()
     </div>
-
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/Chart.js"></script>
-    <script src="~/Scripts/angular.js"></script>
-    <script src="~/Scripts/jquery.signalR-2.1.1.js"></script>
+    <script>
+        var _begin = Date.now();
+    </script>
+    @{
+        var useCDN = Convert.FromBase64String(User.Identity.Name).Last() % 2 == 0;
+        if (useCDN)
+        {
+            <text>
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/chartjs")
+                @Scripts.Render("~/bundles/angularjs")
+                @Scripts.Render("~/bundles/jquery.signalR")
+            </text>
+        }
+        else
+        {
+            <text>@Scripts.Render("~/bundles/js")</text>
+        }
+    }
     <script src="~/signalr/hubs"></script>
+    <script>
+        var _end = Date.now();
+        var _elapse = (_end - _begin);
+        $.post('/LogPerformance', {useCDN:@(useCDN?"true":"false"),elapse:_elapse});
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

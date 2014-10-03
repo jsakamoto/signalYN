@@ -7,12 +7,12 @@ using Toolbelt.DynamicBinderExtension;
 namespace AskTheAudienceNow.Test
 {
     [TestClass]
-    public class LogToFileAndSendMailListenerTest
+    public class SendMailListenerTest
     {
         [TestMethod]
         public void CreateSmtpClientTest()
         {
-            var listener = new LogToFileAndSendMailListener();
+            var listener = new SendMailListener();
             var smtpClient = (SmtpClient)listener
                 .ToDynamic()
                 .CreateSmtpClient("{Host:'test.example.com',Port:123,UserName:'fizz',Password:'buzz'}");

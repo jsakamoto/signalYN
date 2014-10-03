@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -12,6 +13,8 @@ namespace AskTheAudienceNow.Controllers
 {
     public class DefaultController : Controller
     {
+        private static TraceSource _CDNPerformanceLogger = new TraceSource("CDNPerformanceLog", SourceLevels.Verbose);
+
         public AppDbContext Db { get; set; }
 
         public DefaultController()
@@ -35,7 +38,7 @@ namespace AskTheAudienceNow.Controllers
             var bitly = Bitly.Default;
             var shortUrlOfThisRoom = bitly.Status == Bitly.StatusType.Available ?
 #if DEBUG
-                bitly.ShortenUrl("http://asktheaudiencenow.azurewebsites.net/Room/" + newRoomNumber.ToString()) : "";
+ bitly.ShortenUrl("http://asktheaudiencenow.azurewebsites.net/Room/" + newRoomNumber.ToString()) : "";
 #else
                 bitly.ShortenUrl(urlOfThisRoom) : "";
 #endif
@@ -75,6 +78,21 @@ namespace AskTheAudienceNow.Controllers
             Db.Rooms.RemoveRange(roomsToSweep);
             Db.SaveChanges();
 
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        public ActionResult LogPerformance(bool useCDN, int elapse)
+        {
+            try
+            {
+                _CDNPerformanceLogger.TraceEvent(TraceEventType.Verbose, 0, "useCDN\t{0}\telapse\t{1}", useCDN, elapse);
+                _CDNPerformanceLogger.Flush();
+            }
+            catch (Exception e)
+            {
+                UnhandledExceptionLogger.Write(e);
+            }
             return new EmptyResult();
         }
     }
