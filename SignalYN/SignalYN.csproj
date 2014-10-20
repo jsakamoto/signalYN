@@ -169,6 +169,9 @@
     <Content Include="Content\favicons\favicon-32x32.png" />
     <Content Include="Content\favicons\favicon-96x96.png" />
     <Content Include="Content\images\fig01.png" />
+    <Content Include="Content\images\ogpimage.png" />
+    <Content Include="Content\images\twittercard-image.png" />
+    <Content Include="favicon.png" />
     <Content Include="favicon.ico" />
     <Content Include="Content\favicons\mstile-144x144.png" />
     <Content Include="Content\favicons\mstile-150x150.png" />
@@ -182,6 +185,7 @@
     <Content Include="Global.asax" />
     <Content Include="onerror.html" />
     <Content Include="app.js.map" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
