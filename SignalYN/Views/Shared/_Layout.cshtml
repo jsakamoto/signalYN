@@ -2,14 +2,17 @@
     ViewBag.AppTitle = "SignalYN";
 }<!DOCTYPE html>
 <html>
-<head prefix="og: http://ogp.me/ns#">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta property="og:title" content="@ViewBag.AppTitle" />
+    <meta property="og:type" content="website" />
     <meta property="og:description" content="@Localize.appDescription" />
     <meta property="og:url" content="@Url.AppUrl()" />
-    <meta property="og:image" content="@Url.AppUrl()/Content/images/ogpimage.png" />@* The size of ogpimage.png for facebook is 200px x 200px. *@
+    <meta property="og:image" content="@Url.AppUrl()/Content/images/ogp-image.png" />@* The size of ogp-image.png for facebook is 200px x 200px. *@
+    <meta property="fb:admins" content="@AppSettings.Facebook.Admins" />
+    <meta property="fb:app_id" content="@AppSettings.Facebook.AppId" />
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="@Url.AppUrl()/Content/images/twittercard-image.png">@* The size of twittercard-image.png for twitter card is 120px x 120px. *@
     <meta name="keywords" content="@Localize.appKeywords" />
@@ -48,6 +51,12 @@
     <div class="main">
         @RenderBody()
     </div>
+
+    <footer>
+        <div class="fb-like" data-share="true" data-width="300" data-show-faces="true"></div>
+        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+    </footer>
+
     <script>
         var _begin = Date.now();
     </script>
@@ -74,5 +83,23 @@
         $.post('/LogPerformance', {useCDN:@(useCDN?"true":"false"),elapse:_elapse});
     </script>
     @RenderSection("scripts", required: false)
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '@AppSettings.Facebook.AppId',
+                xfbml      : true,
+                version    : 'v2.1'
+            });
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 </body>
 </html>

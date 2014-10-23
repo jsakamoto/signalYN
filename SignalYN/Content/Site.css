@@ -103,7 +103,9 @@ input.room-number {
     font-size: 150%;
 }
 
-
+footer {
+    margin-top: 32px;
+}
 
 /* room page */
 

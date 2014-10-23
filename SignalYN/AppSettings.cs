@@ -32,6 +32,19 @@ namespace SignalYN
             }
         }
 
+        public static class Facebook
+        {
+            public static string Admins
+            {
+                get { return ConfigurationManager.AppSettings["facebook.admins"]; }
+            }
+
+            public static string AppId
+            {
+                get { return ConfigurationManager.AppSettings["facebook.appId"]; }
+            }
+        }
+
         public static class Site
         {
             public static string Timezone
