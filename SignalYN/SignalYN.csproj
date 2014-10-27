@@ -168,7 +168,12 @@
     <Content Include="Content\favicons\favicon-192x192.png" />
     <Content Include="Content\favicons\favicon-32x32.png" />
     <Content Include="Content\favicons\favicon-96x96.png" />
+    <Content Include="Content\images\angularjs-g-16.png" />
+    <Content Include="Content\images\aspnet-g-16.png" />
+    <Content Include="Content\images\aspnet_mvc_16.png" />
+    <Content Include="Content\images\azure_websites_b16.png" />
     <Content Include="Content\images\fig01.png" />
+    <Content Include="Content\images\GitHub-Mark-g-16px.png" />
     <Content Include="Content\images\ogp-image.png" />
     <Content Include="Content\images\twittercard-image.png" />
     <Content Include="favicon.png" />

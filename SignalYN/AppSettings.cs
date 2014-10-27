@@ -16,9 +16,19 @@ namespace SignalYN
 
         public static class App
         {
-            public static string MailUrl
+            public static string MainUrl
             {
-                get { return ConfigurationManager.AppSettings["app.mailUrl"]; }
+                get { return ConfigurationManager.AppSettings["app.mainUrl"]; }
+            }
+
+            public static string SrcProvider
+            {
+                get { return ConfigurationManager.AppSettings["app.srcProvider"]; }
+            }
+
+            public static string SrcUrl
+            {
+                get { return ConfigurationManager.AppSettings["app.srcUrl"]; }
             }
         }
 

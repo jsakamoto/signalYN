@@ -55,8 +55,17 @@
     </div>
 
     <footer>
-        <div class="fb-like" data-share="true" data-width="300" data-show-faces="false" data-layout="button_count" data-action="like" data-href="@AppSettings.App.MailUrl"></div>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-text="@ViewBag.TweetText">Tweet</a>
+        <div class="social-buttons">
+            <div class="fb-like" data-share="true" data-width="300" data-show-faces="false" data-layout="button_count" data-action="like" data-href="@AppSettings.App.MainUrl"></div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-text="@ViewBag.TweetText">Tweet</a>
+        </div>
+        <div class="powered-by">
+            <a href="http://www.asp.net/mvc" target="_blank" class="aspnet">ASP.NET MVC</a>
+            &amp; <a href="http://www.asp.net/signalr" target="_blank">SignalR</a>
+            | <a href="https://angularjs.org/" target="_blank" class="angularjs">AngularJS</a>
+            | <a href="http://azure.microsoft.com/en-us/services/websites/" target="_blank" class="azure-websites">Hosted on Azure Websites</a>
+            | <a href="@AppSettings.App.SrcUrl" target="_blank" class="@AppSettings.App.SrcProvider">GNU GPLv2</a>
+        </div>
     </footer>
 
     <script>
