@@ -2,6 +2,8 @@
 @{
     var isOwner = Model.OwnerUserID == this.User.Identity.Name;
     var urlOfThisRoom = Model.Url;
+    ViewBag.HtmlTitle = string.Format(" - Room Number {0}", Model.RoomNumber);
+    ViewBag.TweetText = string.Format("Let's join SignalYN Room {0}!", Model.RoomNumber);
 }
 @section headerLeft{
     <a href="/" class="go-home"></a>

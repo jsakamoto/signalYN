@@ -1,5 +1,7 @@
 ﻿@{
     ViewBag.AppTitle = "SignalYN";
+    ViewBag.HtmlTitle = ViewBag.AppTitle + ViewBag.HtmlTitle;
+    ViewBag.TweetText = ViewBag.TweetText ?? ViewBag.AppTitle;
 }<!DOCTYPE html>
 <html>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
@@ -38,7 +40,7 @@
     <meta name="msapplication-TileImage" content="/content/favicons/mstile-144x144.png">
     <meta name="application-name" content="SignalYN">
 
-    <title>@ViewBag.AppTitle</title>
+    <title>@ViewBag.HtmlTitle</title>
     @Styles.Render("~/content/css")
 </head>
 <body>
@@ -54,7 +56,7 @@
 
     <footer>
         <div class="fb-like" data-share="true" data-width="300" data-show-faces="false" data-layout="button_count" data-action="like" data-href="@AppSettings.App.MailUrl"></div>
-        <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-text="@ViewBag.TweetText">Tweet</a>
     </footer>
 
     <script>
