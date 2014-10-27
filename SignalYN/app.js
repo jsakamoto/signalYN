@@ -1,6 +1,17 @@
 ﻿/// <reference path="scripts/typings/signalr/signalr.d.ts" />
 /// <reference path="scripts/typings/angularjs/angular.d.ts" />
 
+var HomeController = (function () {
+    function HomeController($scope) {
+        $scope.roomNumber = null;
+    }
+    HomeController.prototype.createNewRoom = function () {
+        $('#createNewRoomForm').submit();
+        return false;
+    };
+    return HomeController;
+})();
+
 var RoomController = (function () {
     function RoomController($scope) {
         var _this = this;
@@ -77,5 +88,6 @@ var RoomController = (function () {
 })();
 
 var theApp = angular.module('theApp', []);
+theApp.controller('homeController', HomeController);
 theApp.controller('roomController', RoomController);
 //# sourceMappingURL=app.js.map

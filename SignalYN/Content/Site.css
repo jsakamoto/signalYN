@@ -88,12 +88,34 @@ a {
     text-decoration: none;
 }
 
-input.btn-primary {
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    line-height: 2.5em;
+    cursor: pointer;
+}
+
+    .btn:hover {
+        opacity: 0.7;
+    }
+
+.btn-primary {
     background-color: rgb(18, 132, 255);
     border: none;
     color: white;
     height: 2.5em;
     border-radius: 4px 4px;
+}
+
+.btn-inline {
+    display: inline-block;
+    width: auto;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
 }
 
 input.room-number {

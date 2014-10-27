@@ -4,6 +4,21 @@ interface Window {
     _app: { roomNumber: number };
 }
 
+interface IHomeScope extends ng.IScope {
+    roomNumber: number;
+}
+
+class HomeController {
+    constructor($scope: IHomeScope) {
+        $scope.roomNumber = null;
+    }
+    public createNewRoom(): boolean {
+        $('#createNewRoomForm').submit();
+        return false;
+    }
+}
+
+
 interface Option {
     text: string;
     selected: boolean;
@@ -15,15 +30,15 @@ declare class Chart {
     Doughnut(data: any[], options: any): any;
 }
 
-interface IScope extends ng.IScope {
+interface IRoomScope extends ng.IScope {
     options: Option[];
 }
 
 class RoomController {
     hub: HubProxy;
-    $scope: IScope;
+    $scope: IRoomScope;
 
-    constructor($scope: IScope) {
+    constructor($scope: IRoomScope) {
         this.$scope = $scope;
         this.$scope.options = [];
         var context = (<HTMLCanvasElement>$('#chart')[0]).getContext('2d');
@@ -94,4 +109,5 @@ class RoomController {
 }
 
 var theApp = angular.module('theApp', []);
+theApp.controller('homeController', HomeController);
 theApp.controller('roomController', RoomController);

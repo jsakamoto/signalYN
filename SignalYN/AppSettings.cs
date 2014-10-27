@@ -14,6 +14,14 @@ namespace SignalYN
             }
         }
 
+        public static class App
+        {
+            public static string MailUrl
+            {
+                get { return ConfigurationManager.AppSettings["app.mailUrl"]; }
+            }
+        }
+
         public static class Errormail
         {
             public static string From

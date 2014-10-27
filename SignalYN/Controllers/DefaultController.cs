@@ -28,6 +28,7 @@ namespace SignalYN.Controllers
             return View();
         }
 
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult CreateNewRoom()
         {
             var newRoomNumber = new Random()
@@ -38,7 +39,7 @@ namespace SignalYN.Controllers
             var bitly = Bitly.Default;
             var shortUrlOfThisRoom = bitly.Status == Bitly.StatusType.Available ?
 #if DEBUG
- bitly.ShortenUrl("http://asktheaudiencenow.azurewebsites.net/Room/" + newRoomNumber.ToString()) : "";
+                bitly.ShortenUrl("http://asktheaudiencenow.azurewebsites.net/Room/" + newRoomNumber.ToString()) : "";
 #else
                 bitly.ShortenUrl(urlOfThisRoom) : "";
 #endif
