@@ -79,6 +79,18 @@ header a.go-home {
         clear: both;
     }
 
+.regions h2 {
+    margin: 8px 0 0 0;
+    padding: 0;
+    font-size: 100%;
+}
+
+.regions ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
 .qr-code {
     width: auto;
     zoom: 0.2;

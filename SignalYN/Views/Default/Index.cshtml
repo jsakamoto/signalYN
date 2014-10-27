@@ -8,7 +8,21 @@
 
     <img src="~/Content/images/fig01.png" id="fig01" />
     <div class="app-description">
-        @Localize.appDescription
+        <section>
+            @Localize.appDescription
+        </section>
+        <section class="regions">
+            <h2>Other regions</h2>
+            <ul>
+                @{
+                    var regions = AppSettings.App.Regions.FromJson<Dictionary<string, string>>();
+                    foreach (var item in regions)
+                    {
+                        <li><a href="@item.Value">@item.Key</a></li>
+                    }
+                }
+            </ul>
+        </section>
     </div>
 
     <p>

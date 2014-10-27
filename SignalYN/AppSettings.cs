@@ -21,6 +21,11 @@ namespace SignalYN
                 get { return ConfigurationManager.AppSettings["app.mainUrl"]; }
             }
 
+            public static string Regions
+            {
+                get { return ConfigurationManager.AppSettings["app.regions"]; }
+            }
+
             public static string SrcProvider
             {
                 get { return ConfigurationManager.AppSettings["app.srcProvider"]; }
