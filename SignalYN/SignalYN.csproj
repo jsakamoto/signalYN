@@ -172,10 +172,13 @@
     <Content Include="Content\images\aspnet-g-16.png" />
     <Content Include="Content\images\aspnet_mvc_16.png" />
     <Content Include="Content\images\azure_websites_b16.png" />
+    <Content Include="Content\images\chart-js-g-16.png" />
     <Content Include="Content\images\fig01.png" />
     <Content Include="Content\images\GitHub-Mark-g-16px.png" />
     <Content Include="Content\images\ogp-image.png" />
+    <Content Include="Content\images\real-favicon-gen-g-16.png" />
     <Content Include="Content\images\twittercard-image.png" />
+    <Content Include="Content\images\typescript-g-16.png" />
     <Content Include="favicon.png" />
     <Content Include="favicon.ico" />
     <Content Include="Content\favicons\mstile-144x144.png" />
